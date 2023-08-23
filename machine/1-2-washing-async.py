@@ -15,10 +15,29 @@ import time
 import asyncio
 
 async def wash(basket):
-    
+    print(f'{time.ctime()} - Washing Machine ({basket}): Put the coin')
+    print(f'{time.ctime()} - Washing Machine ({basket}): Start washing...')
+    await asyncio.sleep(5)
+    print(f'{time.ctime()} - Washing Machine ({basket}): Finished washing')
+    return f'{basket} is completed'
 
 async def main():
-    
+   coroA = wash('Basket A')
+   print(coroA)
+   print(type(coroA))
+   taskA = asyncio.create_task(coroA)
+   print(taskA)
+   print(type(taskA))
+   resultA = await taskA
+   coroB = wash('Basket B')
+   print(coroB)
+   print(type(coroB))
+   taskB = asyncio.create_task(coroB)
+   print(taskB)
+   print(type(taskB))
+   resultB = await taskB
+   print(resultA)
+   print(resultB)
 
 if __name__ == '__main__':
     t1 = time.time()
